@@ -6,6 +6,7 @@
 引入 absoluteSort.js 的 absoluteSort 方法
 
 ```js
+// 注意，Math.floor(Math.random() * 40) 会随机生成 0-39，这是为了让 div 可以随机布局，来测试一些误差
 const divList1 = [
         {
             x: 50 + Math.floor(Math.random() * 40),
