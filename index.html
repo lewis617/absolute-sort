@@ -1,0 +1,78 @@
+<script src="absoluteSort.js"></script>
+<style>
+    #source {
+        position: relative;
+        height: 400px;
+    }
+
+    #target {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #target>div {
+        margin-left: 20px;
+    }
+</style>
+原始位置
+<div id="source"></div>
+排序位置
+<div id="target"></div>
+<script>
+    const findMinBy = (arr, key) => {
+        return arr.reduce(function (prev, curr, index, arr) {
+            return prev[key] < curr[key] ? prev : curr;
+        });
+    }
+
+
+    const divList1 = [
+        {
+            x: 50 + Math.floor(Math.random() * 40),
+            y: 50 + 200 + Math.floor(Math.random() * 40),
+            val: 1,
+        },
+        {
+            x: 50 + 200 + Math.floor(Math.random() * 40),
+            y: 50 + Math.floor(Math.random() * 40),
+            val: 2,
+        },
+        {
+            x: 50 + Math.floor(Math.random() * 40),
+            y: 50 + Math.floor(Math.random() * 40),
+            val: 3,
+        },
+
+
+        {
+            x: 50 + 200 + Math.floor(Math.random() * 40),
+            y: 50 + 200 + Math.floor(Math.random() * 40),
+            val: 4,
+        },
+    ];
+
+    const renderDivListToSource = (list) => {
+        const colorList = ['red', 'green', 'blue', 'yellow'];
+        const renderDiv = (location, index) => {
+            return `<div style="width:100px; height: 100px; background: ${colorList[location.val % 4]}; position: absolute; left: ${location.x}px; top: ${location.y}px">div${location.val}</div>`;
+        };
+        document.querySelector('#source').innerHTML = `
+        ${list.map(renderDiv).join('')}
+        `;
+    }
+
+    renderDivListToSource(divList1);
+
+    const divList2 = absoluteSort(divList1);
+
+    const renderDivListToTarget = (list) => {
+        const colorList = ['red', 'green', 'blue', 'yellow'];
+        const renderDiv = (location, index) => {
+            return `<div style="width:100px; height: 100px; background: ${colorList[location.val % 4]};">div${location.val}</div>`;
+        };
+        document.querySelector('#target').innerHTML = `
+        ${list.map(renderDiv).join('')}
+        `;
+    }
+    renderDivListToTarget(divList2);
+</script>
