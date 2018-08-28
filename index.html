@@ -20,13 +20,6 @@
 排序位置
 <div id="target"></div>
 <script>
-    const findMinBy = (arr, key) => {
-        return arr.reduce(function (prev, curr, index, arr) {
-            return prev[key] < curr[key] ? prev : curr;
-        });
-    }
-
-
     const divList1 = [
         {
             x: 10 + Math.floor(Math.random() * 40),
@@ -84,11 +77,6 @@
         ${list.map(renderDiv).join('')}
         `;
     }
-
-    renderDivListToSource(divList1);
-
-    const divList2 = absoluteSort(divList1);
-
     const renderDivListToTarget = (list) => {
         const colorList = ['red', 'green', 'blue', 'yellow'];
         const renderDiv = (location, index) => {
@@ -98,5 +86,10 @@
         ${list.map(renderDiv).join('')}
         `;
     }
+
+    renderDivListToSource(divList1);
+
+    const divList2 = absoluteSort(divList1);
+
     renderDivListToTarget(divList2);
 </script>
